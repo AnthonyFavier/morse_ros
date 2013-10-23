@@ -1,0 +1,7 @@
+<launch>
+    <master auto="start"/>
+
+    <!-- setting up robot frames and model -->
+    <param name="robot_description" command="cat $(find morse_ros)/data/pr2.urdf"/>
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>
+</launch>
