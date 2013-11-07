@@ -146,27 +146,6 @@ install(PROGRAMS
 #   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 # )
 
-# mark data files for installation
-install(FILES
-  data/robot_urdf/pr2.urdf
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/data/robot_urdf
-)
-install(FILES
-  data/blender_files/tum_kitchen.blend
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/data/blender_files
-)
-install(FILES
-  data/morse_scripts/tum_kitchen_scenario.py
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/data/morse_scripts
-)
-
-# mark launch files for installation
-install(FILES
-  launch/robot.launch
-  launch/robot_wo_morse.launch
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch
-)
-
 #############
 ## Testing ##
 #############
