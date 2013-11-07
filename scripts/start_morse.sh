@@ -44,6 +44,3 @@ fi
 # start morse with given scenario
 morse run -g 1280x720 $1
 #morse check
-
-#TODO:start morse using builder script
-#$MORSE_DIR/morse/bin/morse exec $MORSE_DIR/morse/share/examples/morse/scenarii/adapto_rebuild/apartment.py
