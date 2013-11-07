@@ -1,0 +1,8 @@
+<launch>
+    <!-- start map_server with a map -->
+    <node name="map_server" pkg="map_server" type="map_server" args="$(find navigation_morse)/morse_config/maps/tum_kitchen_map.yaml"/>
+    <!-- start acml for localization -->
+    <node name="amcl" pkg="amcl" type="amcl">
+        <remap from="scan" to="james/sick"/>
+    </node>
+</launch>

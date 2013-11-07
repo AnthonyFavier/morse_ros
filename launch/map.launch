@@ -1,0 +1,7 @@
+<launch>
+    <!-- run slam or the map server and amcl -->
+    <node name="slam_gmapping" pkg="gmapping" type="slam_gmapping" output="screen">
+        <remap from="scan" to="james/sick"/>
+        <param name="odom_frame" value="odom"/>
+    </node>
+</launch>
