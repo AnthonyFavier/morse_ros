@@ -173,11 +173,11 @@ install(FILES
 
 # mark launch files for installation
 install(FILES
-  launch/robot.launch
+  launch/pr2.launch
   launch/map.launch
   launch/locate.launch
   launch/nav.launch
-  launch/robot_wo_morse.launch
+  launch/pr2_tum_kitchen.launch
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch
 )
 
