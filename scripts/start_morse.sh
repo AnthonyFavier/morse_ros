@@ -4,19 +4,9 @@
 if [ -n "$ROS_PACKAGE_PATH" ]
 then
   echo "Using ROS_PACKAGE_PATH: $ROS_PACKAGE_PATH"
-else
-  echo ROS_PACKAGE_PATH not set
 fi
 
-#TODO: check following while installation
-#PYYAML_DIR=$(rospack find morse_pyyaml)
-#ROSLIB_DIR=$(rospack find roslib)
-
-#TODO: setup morse as ros package
-#MORSE_DIR=$(rospack find morse)
-
-#TODO: setup blender for morse as ros package
-#BLENDER_DIR=$(rospack find morse_blender)
+#TODO: check if morse and other components are installed and paths are set properly
 
 # set python version for morse
 PYTHON_VERSION=python3.2
@@ -39,8 +29,10 @@ then
   echo "Using MORSE_BLENDER: $MORSE_BLENDER"
 else
   echo MORSE_BLENDER path-variable not set
+  exit
 fi
 
 # start morse with given scenario
-morse run -g 1280x720 $1
 #morse check
+morse run -g 1280x720 $1
+
