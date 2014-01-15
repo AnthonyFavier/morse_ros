@@ -43,7 +43,7 @@ human.properties(WorldCamera = True)
 # pose sensor for the human
 pose = Pose()
 human.append(pose)
-pose.add_stream('socket')
+pose.add_interface('ros')
 
 # set the environment to tum_kitchen
 navigation_morse_dir = subprocess.check_output('rospack find navigation_morse', shell=True,
