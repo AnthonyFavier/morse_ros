@@ -4,7 +4,7 @@ from morse.builder import *
 # basic PR2 robot to the scene
 james = BasePR2()
 james.add_interface('ros')  #necessary for having correct tf
-james.translate(x=8.2, y=5.5, z=0.0)
+james.translate(x=7.5, y=5.5, z=0.0)
 james.rotate(x=0.0, y=0.0, z=-1.57)
 
 # keyboard control to the robot
@@ -37,7 +37,7 @@ motion.add_interface('ros', topic='/cmd_vel')
 
 # adding human model
 human = Human()
-human.translate(x=8.2, y=2.8, z=0.0)
+human.translate(x=7.5, y=2.8, z=0.0)
 human.rotate(x=0.0, y=0.0, z=1.57)
 human.properties(WorldCamera = True)
 
