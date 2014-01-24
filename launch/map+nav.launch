@@ -2,8 +2,8 @@
     <master auto="start"/>
 
     <!-- setting up robot frames and model -->
-    <param name="robot_description" command="cat $(find morse_ros_navigation)/data/pr2.urdf"/>
-    <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>
+    <!-- <param name="robot_description" command="cat $(find navigation_morse)/data/pr2.urdf"/>
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/> -->
 
     <!-- run slam or the map server and amcl -->
     <node name="slam_gmapping" pkg="gmapping" type="slam_gmapping" output="screen">
