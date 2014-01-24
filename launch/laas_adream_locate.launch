@@ -1,0 +1,11 @@
+<launch>
+    <!-- start map_server with a map -->
+    <node name="map_server" pkg="map_server" type="map_server" args="$(find navigation_morse)/morse_config/maps/laas_adream_map_full.yaml"/>
+    <!-- start acml for localization -->
+    <node name="amcl" pkg="amcl" type="amcl">
+      <remap from="scan" to="james/sick"/>
+      <param name="initial_pose_x" value="0.0"/>
+      <param name="initial_pose_y" value="0.0"/>
+      <param name="initial_pose_a" value="0.0"/>
+    </node>
+</launch>
