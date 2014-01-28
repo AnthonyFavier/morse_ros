@@ -4,8 +4,8 @@ from morse.builder import *
 # basic PR2 robot to the scene
 james = BasePR2()
 james.add_interface('ros')  #necessary for having correct tf
-james.translate(x=7.5, y=5.5, z=0.0)
-james.rotate(x=0.0, y=0.0, z=-1.57)
+james.translate(x=2.0, y=2.0, z=0.0)
+james.rotate(x=0.0, y=0.0, z=0.0)
 
 # keyboard control to the robot
 keyboard = Keyboard()
@@ -37,8 +37,8 @@ motion.add_interface('ros', topic='/cmd_vel')
 
 # adding human model
 human = Human()
-human.translate(x=7.5, y=2.8, z=0.0)
-human.rotate(x=0.0, y=0.0, z=1.57)
+human.translate(x=4.0, y=2.0, z=0.0)
+human.rotate(x=0.0, y=0.0, z=3.14159265)
 human.properties(WorldCamera = True)
 
 # posture sensor for human (use this when ros publisher for humanposture is ready)
