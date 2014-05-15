@@ -3,7 +3,7 @@
 
     <!-- start morse with a scenario -->
     <node pkg="morse_ros" type="start_morse.sh" 
-    	  args="$(find navigation_morse)/morse_config/morse_scripts/pr2_laas_adream_scenario.py" 
+    	  args="$(find navigation_morse)/morse_config/morse_scripts/laas_adream_scenario.py" 
 	  name="morse" output="screen" required="true"/>
 
     <!-- setting up robot frames and model -->
