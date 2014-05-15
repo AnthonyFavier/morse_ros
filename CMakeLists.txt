@@ -47,49 +47,10 @@ catkin_package(
 
 # all install targets should use catkin DESTINATION variables
 # See http://ros.org/doc/api/catkin/html/adv_user_guide/variables.html
-
-# mark morse_config files for installation
-install(FILES
-  morse_config/robot_urdf/pr2.urdf
-  morse_config/robot_urdf/readme
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/morse_config/robot_urdf
-)
-install(FILES
-  morse_config/blender_files/tum_kitchen.blend
-  morse_config/blender_files/laas_adream.blend
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/morse_config/blender_files
-)
-install(FILES
-  morse_config/morse_scripts/tum_kitchen_scenario.py
-  morse_config/morse_scripts/laas_adream_scenario.py
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/morse_config/morse_scripts
-)
-install(FILES
-  morse_config/maps/tum_kitchen_map.yaml
-  morse_config/maps/tum_kitchen_map.pgm
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/morse_config/maps
-)
-
-# mark move_base_config files for installation
-install(FILES
-  move_base_config/base_local_planner_params.yaml
-  move_base_config/costmap_common_params.yaml
-  move_base_config/dwa_local_planner_params.yaml
-  move_base_config/global_costmap_params.yaml
-  move_base_config/local_costmap_params.yaml
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/move_base_config
-)
-
-# mark launch files for installation
-install(FILES
-  launch/pr2.launch
-  launch/map.launch
-  launch/locate.launch
-  launch/nav.launch
-  launch/pr2_tum_kitchen.launch
-  launch/pr2_laas_adream.launch
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch
-)
+foreach(dir morse_config/robot_urdf morse_config/blender_files morse_config/morse_scripts morse_config/maps move_base_config launch)
+   install(DIRECTORY ${dir}/ 
+      DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/${dir})
+endforeach(dir)
 
 #############
 ## Testing ##
