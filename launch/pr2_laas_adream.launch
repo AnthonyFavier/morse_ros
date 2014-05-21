@@ -1,0 +1,10 @@
+<launch>
+    <master auto="start"/>
+
+    <!-- start morse with a scenario -->
+    <node pkg="morse_ros" type="start_morse.sh"
+        args="$(find morse_ros)/scenarios/pr2_laas_adream_scenario.py"
+        name="morse" output="screen" required="true"/>
+
+    <include file="$(find morse_ros)/launch/pr2.launch"/>
+</launch>
