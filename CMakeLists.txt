@@ -1,66 +1,130 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(navigation_morse)
 
-## Find catkin macros and libraries
-find_package(catkin REQUIRED COMPONENTS
+
+
+## set up ##
+
+## set the files
+set(ROS_DEPS
   morse_ros
 )
 
-###################################
-## catkin specific configuration ##
-###################################
+### set of packages whose message types this package use
+#set(MSG_DEP_SET
+#)
+
+#set(MSG_FILES
+#)
+
+#set(SRV_FILES
+#)
+
+#set(ACT_FILES
+#)
+
+##
+find_package(catkin REQUIRED COMPONENTS
+#  message_generation
+  ${ROS_DEPS}
+#  ${MSG_DEP_SET}
+)
+
+## system dependencies are found with CMake's conventions
+# find_package(Boost REQUIRED COMPONENTS system)
+
+## add message, serviece and action files
+#add_message_files(DIRECTORY msg FILES ${MSG_FILES})
+#add_service_files(DIRECTORY srv FILES ${SRV_FILES})
+#add_action_files(DIRECTORY action FILES ${ACT_FILES})
+
+## generate added messages and services with any dependencies listed here
+#generate_messages(
+#  DEPENDENCIES
+#  ${MSG_DEP_SET}
+#)
+
+## configure and declare catkin pakcage
 catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES navigation_morse
-#  CATKIN_DEPENDS other_catkin_pkg
+#  INCLUDE_DIRS
+#    include
+#  LIBRARIES person_publisher
+#  CATKIN_DEPENDS
+#    message_runtime
+#    ${ROS_DEPS}
+#    ${MSG_DEP_SET}
 #  DEPENDS system_lib
 )
 
-###########
+
+
 ## Build ##
-###########
 
-## Specify additional locations of header files
-## Your package locations should be listed before other locations
-# include_directories(include)
+## include catking include directories
+#include_directories(
+#  ${catkin_INCLUDE_DIRS}
+#)
 
-## Declare a cpp library
-# add_library(navigation_morse
-#   src/${PROJECT_NAME}/navigation_morse.cpp
-# )
+## declare a cpp library
+#  add_library(person_publisher
+#    src/${PROJECT_NAME}/navigation_morse.cpp
+#  )
 
-## Declare a cpp executable
-# add_executable(navigation_morse_node src/navigation_morse_node.cpp)
+## declare a cpp executable
+#  add_executable(navigation_morse_node src/navigation_morse_node.cpp)
 
-## Add cmake target dependencies of the executable/library
-## as an example, message headers may need to be generated before nodes
-# add_dependencies(navigation_morse_node navigation_morse_generate_messages_cpp)
+## cmake target dependencies of the executable/library
+#  add_dependencies(navigation_morse_node navigation_morse_generate_messages_cpp)
 
-## Specify libraries to link a library or executable target against
-# target_link_libraries(navigation_morse_node
-#   ${catkin_LIBRARIES}
-# )
+## libraries to link a library or executable target against
+#  target_link_libraries(navigation_morse_node
+#    ${catkin_LIBRARIES}
+#  )
 
-#############
+
+
 ## Install ##
-#############
 
-# all install targets should use catkin DESTINATION variables
-# See http://ros.org/doc/api/catkin/html/adv_user_guide/variables.html
-foreach(dir morse_config/robot_urdf morse_config/blender_files morse_config/morse_scripts morse_config/maps move_base_config rviz launch)
-   install(DIRECTORY ${dir}/ 
+## executable scripts (python etc.) for installation
+# install(PROGRAMS
+#   scripts/start_morse.sh
+#   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+# )
+
+# install launch, map, move_base_config and rviz files
+foreach(dir launch maps move_base_config rviz)
+   install(DIRECTORY ${dir}/
       DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/${dir})
 endforeach(dir)
 
-#############
-## Testing ##
-#############
+## executables and/or libraries for installation
+# install(TARGETS person_publisher person_publisher_node
+#   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+#   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+#   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+# )
 
-## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_navigation_morse.cpp)
+## cpp-header files for installation
+# install(DIRECTORY include/${PROJECT_NAME}/
+#   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+#   FILES_MATCHING PATTERN "*.h"
+#   PATTERN ".svn" EXCLUDE
+# )
+
+## other files for installation
+# install(FILES
+#   # myfile1
+#   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+# )
+
+
+
+## Testing ##
+
+## add catch based cpp test target
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_person_publisher.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
 
-## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
