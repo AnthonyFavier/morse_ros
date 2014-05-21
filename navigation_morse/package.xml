@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package>
+  <name>navigation_morse</name>
+  <version>0.1.2</version>
+  <description>the navigation_morse package is a combination of launch files and config
+  files to be used with morse_ros to demo navigation in the MORSE simulator based on
+  morse_2dnav example from morse website.</description>
+
+  <!-- One maintainer tag required, multiple allowed, one person per tag --> 
+  <maintainer email="harmish@laas.fr">harmish khambhaita</maintainer>
+
+  <license>BSD</license>
+
+  <!-- <url type="website">http://ros.org/wiki/navigation_morse</url> -->
+
+  <!-- <author email="jane.doe@example.com">Jane Doe</author> -->
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <run_depend>morse_ros</run_depend>
+
+</package>
