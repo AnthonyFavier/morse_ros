@@ -1,7 +1,7 @@
 <launch>
     <!-- run move base -->
     <node pkg="move_base" type="move_base" respawn="false" name="move_base_node" output="screen">
-        <remap from="base_scan" to="scan"/>
+        <remap from="scan" to="base_scan"/>
         <remap from="odom" to="odom"/>
         <!--param name="controller_frequency" value="10.0" />
         <param name="footprint_padding" value="0.01" />
