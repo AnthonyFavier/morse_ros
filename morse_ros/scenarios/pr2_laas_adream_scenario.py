@@ -1,6 +1,7 @@
 from morse.builder import *
 
-# pr2 robot with laser (scan) and odometry (odom) sensors, and actuators for armature (joint_trajectory_contorller) asnd wheels (cmd_vel) to the scene
+# pr2 robot with laser (scan) and odometry (odom) sensors, and actuators
+#  for armature (joint_trajectory_contorller) asnd wheels (cmd_vel) to the scene
 pr2 = NavPR2()
 pr2.add_interface("ros")
 

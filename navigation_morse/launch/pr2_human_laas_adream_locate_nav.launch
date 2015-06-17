@@ -1,0 +1,6 @@
+<launch>
+    <include file="$(find morse_ros)/launch/pr2_human_laas_adream.launch"/>
+    <include file="$(find navigation_morse)/launch/laas_adream_locate.launch"/>
+    <include file="$(find navigation_morse)/launch/pr2_nav.launch"/>
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find navigation_morse)/rviz/morse.rviz" />
+</launch>
