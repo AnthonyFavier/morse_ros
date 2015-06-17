@@ -3,8 +3,7 @@ Panels:
     Help Height: 78
     Name: Displays
     Property Tree Widget:
-      Expanded:
-        - /Map1
+      Expanded: ~
       Splitter Ratio: 0.5
     Tree Height: 899
   - Class: rviz/Selection
@@ -38,7 +37,7 @@ Visualization Manager:
       Line Style:
         Line Width: 0.03
         Value: Lines
-      Name: Grid
+      Name: grid
       Normal Cell Count: 0
       Offset:
         X: 0
@@ -494,7 +493,7 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-      Name: RobotModel
+      Name: robot model
       Robot Description: robot_description
       TF Prefix: ""
       Update Interval: 0
@@ -505,8 +504,24 @@ Visualization Manager:
       Color Scheme: map
       Draw Behind: false
       Enabled: true
-      Name: Map
+      Name: map
       Topic: /map
+      Value: true
+    - Alpha: 0.7
+      Class: rviz/Map
+      Color Scheme: costmap
+      Draw Behind: false
+      Enabled: false
+      Name: global cost-map
+      Topic: /move_base_node/global_costmap/costmap
+      Value: false
+    - Alpha: 0.7
+      Class: rviz/Map
+      Color Scheme: costmap
+      Draw Behind: false
+      Enabled: true
+      Name: local cost-map
+      Topic: /move_base_node/local_costmap/costmap
       Value: true
     - Alpha: 1
       Buffer Length: 1
@@ -536,13 +551,41 @@ Visualization Manager:
         Z: 0
       Topic: /move_base_node/DWAPlannerROS/local_plan
       Value: true
+    - Alpha: 1
+      Buffer Length: 1
+      Class: rviz/Path
+      Color: 25; 255; 0
+      Enabled: true
+      Line Style: Lines
+      Line Width: 0.03
+      Name: global path
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Topic: /move_base_node/HANPLocalPlanner/global_plan
+      Value: true
+    - Alpha: 1
+      Buffer Length: 1
+      Class: rviz/Path
+      Color: 0; 85; 255
+      Enabled: true
+      Line Style: Lines
+      Line Width: 0.03
+      Name: local path
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Topic: /move_base_node/HANPLocalPlanner/local_plan
+      Value: true
     - Angle Tolerance: 0.1
       Class: rviz/Odometry
       Color: 255; 25; 0
       Enabled: false
       Keep: 100
       Length: 1
-      Name: Odometry
+      Name: odometry trace
       Position Tolerance: 0.1
       Topic: /odom
       Value: false
@@ -559,7 +602,7 @@ Visualization Manager:
       Frames:
         All Enabled: false
       Marker Scale: 1
-      Name: TF
+      Name: frames
       Show Arrows: true
       Show Axes: true
       Show Names: true
@@ -591,16 +634,16 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 18.0365
+      Distance: 19.0622
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.06
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 5.12106
-        Y: 1.86916
-        Z: -2.67514
+        X: 3.93211
+        Y: 4.79608
+        Z: -2.59622
       Name: Current View
       Near Clip Distance: 0.01
       Pitch: 1.2802
