@@ -4,7 +4,7 @@ Panels:
     Name: Displays
     Property Tree Widget:
       Expanded: ~
-      Splitter Ratio: 0.5
+      Splitter Ratio: 0.534404
     Tree Height: 899
   - Class: rviz/Selection
     Name: Selection
@@ -29,7 +29,7 @@ Panels:
 Visualization Manager:
   Class: ""
   Displays:
-    - Alpha: 0.5
+    - Alpha: 0.2
       Cell Size: 1
       Class: rviz/Grid
       Color: 160; 160; 164
@@ -502,7 +502,7 @@ Visualization Manager:
     - Alpha: 0.7
       Class: rviz/Map
       Color Scheme: map
-      Draw Behind: false
+      Draw Behind: true
       Enabled: true
       Name: map
       Topic: /map
@@ -519,38 +519,10 @@ Visualization Manager:
       Class: rviz/Map
       Color Scheme: costmap
       Draw Behind: false
-      Enabled: true
+      Enabled: false
       Name: local cost-map
-      Topic: /move_base_node/local_costmap/costmap
-      Value: true
-    - Alpha: 1
-      Buffer Length: 1
-      Class: rviz/Path
-      Color: 25; 255; 0
-      Enabled: true
-      Line Style: Lines
-      Line Width: 0.03
-      Name: gloabal plan
-      Offset:
-        X: 0
-        Y: 0
-        Z: 0
-      Topic: /move_base_node/DWAPlannerROS/global_plan
-      Value: true
-    - Alpha: 1
-      Buffer Length: 1
-      Class: rviz/Path
-      Color: 255; 0; 0
-      Enabled: true
-      Line Style: Lines
-      Line Width: 0.03
-      Name: local plan
-      Offset:
-        X: 0
-        Y: 0
-        Z: 0
-      Topic: /move_base_node/DWAPlannerROS/local_plan
-      Value: true
+      Topic: /map
+      Value: false
     - Alpha: 1
       Buffer Length: 1
       Class: rviz/Path
@@ -563,7 +535,7 @@ Visualization Manager:
         X: 0
         Y: 0
         Z: 0
-      Topic: /move_base_node/HANPLocalPlanner/global_plan
+      Topic: /move_base_node/DWAPlannerROS/global_plan
       Value: true
     - Alpha: 1
       Buffer Length: 1
@@ -577,7 +549,7 @@ Visualization Manager:
         X: 0
         Y: 0
         Z: 0
-      Topic: /move_base_node/HANPLocalPlanner/local_plan
+      Topic: /move_base_node/DWAPlannerROS/local_plan
       Value: true
     - Angle Tolerance: 0.1
       Class: rviz/Odometry
@@ -610,6 +582,13 @@ Visualization Manager:
         {}
       Update Interval: 0
       Value: false
+    - Alpha: 1
+      Class: rviz/Polygon
+      Color: 0; 0; 127
+      Enabled: true
+      Name: footprint
+      Topic: /move_base_node/local_costmap/obstacles_footprint/footprint_stamped
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -634,22 +613,22 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 19.0622
+      Distance: 33.5677
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.06
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 3.93211
-        Y: 4.79608
-        Z: -2.59622
+        X: 3.93353
+        Y: 5.46495
+        Z: -2.54136
       Name: Current View
       Near Clip Distance: 0.01
-      Pitch: 1.2802
+      Pitch: 1.0598
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.30222
+      Yaw: 6.15541
     Saved: ~
 Window Geometry:
   Displays:
