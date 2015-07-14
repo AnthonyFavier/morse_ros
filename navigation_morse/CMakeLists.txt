@@ -92,7 +92,7 @@ catkin_package(
 # )
 
 # install launch, map, move_base_config and rviz files
-foreach(dir launch maps move_base_config rviz)
+foreach(dir launch layer_config maps move_base_config rviz)
    install(DIRECTORY ${dir}/
       DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/${dir})
 endforeach(dir)
