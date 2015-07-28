@@ -14,6 +14,11 @@ pose = Pose()
 human.append(pose)
 pose.add_interface('ros')
 
+# teleport actuator for the human
+teleport = Teleport()
+human.append(teleport)
+teleport.add_interface('ros')
+
 # set the environment to tum_kitchen
 env = Environment('tum_kitchen.blend')
 env.set_camera_location([10.0, -10.0, 10.0])

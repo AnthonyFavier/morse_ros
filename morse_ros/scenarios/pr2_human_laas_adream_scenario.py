@@ -14,6 +14,11 @@ pose = Pose()
 human.append(pose)
 pose.add_interface('ros')
 
+# teleport actuator for the human
+teleport = Teleport()
+human.append(teleport)
+teleport.add_interface('ros')
+
 # set the environment to laas_adream
 env = Environment('laas_adream.blend')
 env.set_camera_location([18.0, 4.0, 10.0])
