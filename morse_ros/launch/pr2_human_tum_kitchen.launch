@@ -5,6 +5,8 @@
     <node pkg="morse_ros" type="start_morse.sh"
         args="$(find morse_ros)/scenarios/pr2_human_tum_kitchen_scenario.py"
         name="morse" output="screen" required="true"/>
+    <node pkg="topic_tools" type="relay" args="Empty001 clock" name="clock_relay" output="screen"/>
+    <param name="use_sim_time" type="bool" value="True" />
 
     <include file="$(find morse_ros)/launch/pr2.launch"/>
 </launch>
