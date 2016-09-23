@@ -1,0 +1,11 @@
+<launch>
+    <arg name="scenario" default="laas_adream"/>
+    <include file="$(find morse_ros)/launch/pr2_scenario.launch">
+        <arg name="scenario" value="$(arg scenario)"/>
+    </include>
+
+    <include file="$(find navigation_morse)/launch/map.launch"/>
+
+    <arg name="viz" default="false"/>
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find navigation_morse)/rviz/morse.rviz" if="$(arg viz)"/>
+</launch>

@@ -5,5 +5,8 @@ env = Environment('laas_adream.blend', fastmode=True)
 env.set_camera_location([18.0, 4.0, 10.0])
 env.set_camera_rotation([1.0, 0.0 , 1.57])
 
+# creates a new instance of the morsy robot
+morsy = Morsy()
+
 env.use_relative_time(True)
 env.create()

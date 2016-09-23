@@ -1,6 +1,8 @@
 <launch>
     <!-- start map_server with a map -->
-    <node name="map_server" pkg="map_server" type="map_server" args="$(find navigation_morse)/maps/laas_adream.yaml"/>
+    <arg name="map" default="laas_adream"/>
+    <node name="map_server" pkg="map_server" type="map_server" args="$(find navigation_morse)/maps/$(arg map).yaml"/>
+    
     <!-- start acml for localization -->
     <node name="amcl" pkg="amcl" type="amcl">
       <param name="initial_pose_x" value="2.0"/>

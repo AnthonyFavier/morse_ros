@@ -2,9 +2,12 @@
     <master auto="start"/>
 
     <!-- start morse with a scenario -->
+    <arg name="scenario" default="laas_adream"/>
     <node pkg="morse_ros" type="start_morse.sh"
-        args="$(find morse_ros)/scenarios/tum_kitchen_scenario.py"
+        args="$(find morse_ros)/scenarios/$(arg scenario)_scenario.py"
         name="morse" output="screen" required="true"/>
+
+    <!-- start simulated clock -->
     <node pkg="topic_tools" type="relay" args="Empty001 clock" name="clock_relay" output="screen"/>
     <param name="use_sim_time" type="bool" value="True" />
 </launch>

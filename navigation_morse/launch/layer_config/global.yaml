@@ -1,0 +1,11 @@
+publish_frequency: 1.0
+update_frequency: 1.0
+resolution: 1.0
+global_frame: map
+robot_base_frame: base_link
+rolling_window: false
+footprint: [[-0.325, -0.325], [-0.325, 0.325], [0.325, 0.325], [0.46, 0.0], [0.325, -0.325]]
+plugins:
+ - {name: static_map, type: "costmap_2d::StaticLayer"}
+ - {name: inflater, type: "costmap_2d::InflationLayer"}
+ # - {name: hanp, type: "hanp_layer::HANPLayer"}
