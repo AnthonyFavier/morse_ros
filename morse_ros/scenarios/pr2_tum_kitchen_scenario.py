@@ -10,14 +10,18 @@ env = Environment('tum_kitchen.blend', fastmode=True)
 env.set_camera_location([10.0, -10.0, 10.0])
 env.set_camera_rotation([1.0470, 0, 0.7854])
 
-# put the robot and human in better places
-pr2.rotate(x=0.0, y=0.0, z=0.0)       # for roation check on the pr2
-pr2.translate(x=2.5, y=3.2, z=0.0)    # put pr2 in some good place
-
 # add clock
 clock = Clock()
-clock.add_stream("ros")
+clock.add_interface("ros", topic="clock")
 pr2.append(clock)
+
+# create teleport actuator
+teleport = Teleport()
+teleport.add_interface("ros", topic="pr2_teleport_pose")
+pr2.append(teleport)
+
+# put the robot in some good place
+teleport.translate(2.5, 3.2, 0.0)
 
 env.use_relative_time(True)
 env.create()
