@@ -7,7 +7,7 @@ pr2.add_interface("ros")
 
 # teleport actuator for the pr2
 teleport_pr2 = Teleport()
-human.append(teleport_pr2)
+pr2.append(teleport_pr2)
 teleport_pr2.add_interface("ros", topic="pr2_teleport_pose")
 
 # adding human model
