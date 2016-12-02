@@ -21,7 +21,7 @@ teleport.add_interface("ros", topic="pr2_teleport_pose")
 pr2.append(teleport)
 
 # put the robot in some good place
-teleport.translate(2.0, 2.0, 0.0)
+pr2.translate(2.0, 2.0, 0.0)
 
 env.use_relative_time(True)
 env.create()

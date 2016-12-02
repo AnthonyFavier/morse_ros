@@ -30,9 +30,9 @@ env.set_camera_location([10.0, -10.0, 10.0])
 env.set_camera_rotation([1.0470, 0, 0.7854])
 
 # put the robot and human in some good places
-teleport_pr2.translate(2.5, 3.2, 0.0)
-teleport_human.translate(6.0, 0.7, 0.0)
-teleport_human.rotate(0.0, 0.0, -3.0)
+pr2.translate(2.5, 3.2, 0.0)
+human.translate(6.0, 0.7, 0.0)
+human.rotate(0.0, 0.0, -3.0)
 
 # add clock
 clock = Clock()

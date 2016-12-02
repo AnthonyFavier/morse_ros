@@ -20,7 +20,7 @@ env.set_camera_location([10.0, -10.0, 10.0])
 env.set_camera_rotation([1.0470, 0, 0.7854])
 
 # put the human in better places
-teleport.translate(6.0, 0.7, 0.0)
+human.translate(6.0, 0.7, 0.0)
 
 # add clock
 clock = Clock()
