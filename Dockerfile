@@ -20,7 +20,7 @@ RUN apt-get update && \
     # clean-up
     rm -rf /pr2_ws && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-    
+
 VOLUME /catkin_ws
 COPY . /catkin_ws/src/
     # install morse-ros packages
