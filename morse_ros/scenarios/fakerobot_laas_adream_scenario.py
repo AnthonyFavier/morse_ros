@@ -25,6 +25,12 @@ motion.properties(ControlType = 'Position')
 motion.add_stream("ros", topic="cmd_vel")
 fakerobot.append(motion)
 
+# laser scanner
+hokuyo = Hokuyo()
+hokuyo.translate(z=0.25)
+hokuyo.add_stream("ros", topic="base_scan")
+fakerobot.append(hokuyo)
+
 # odometry
 odometry = Odometry()
 odometry.add_stream("ros", topic="odom")
