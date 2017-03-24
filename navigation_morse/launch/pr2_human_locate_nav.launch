@@ -1,13 +1,15 @@
 <launch>
-    <arg name="scenario" default="laas_adream"/>
-    <arg name="map" default="laas_adream"/>
+    <arg name="scenario" default="laas_adream" />
+    <arg name="rear_laser" default="false" />
+    <arg name="map" default="laas_adream" />
     <include file="$(find navigation_morse)/launch/pr2_human_locate.launch">
-        <arg name="scenario" value="$(arg scenario)"/>
-        <arg name="map" value="$(arg map)"/>
+        <arg name="scenario" value="$(arg scenario)" />
+        <arg name="rear_laser" value="$(arg rear_laser)" />
+        <arg name="map" value="$(arg map)" />
     </include>
 
-    <include file="$(find navigation_morse)/launch/pr2_nav.launch"/>
+    <include file="$(find navigation_morse)/launch/pr2_nav.launch" />
 
-    <arg name="viz" default="false"/>
-    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find navigation_morse)/rviz/morse.rviz" if="$(arg viz)"/>
+    <arg name="viz" default="false" />
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find navigation_morse)/rviz/morse.rviz" if="$(arg viz)" />
 </launch>
