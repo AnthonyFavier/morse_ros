@@ -3,13 +3,13 @@ from morse.builder import *
 
 # pr2 robot with laser (scan) and odometry (odom) sensors, and actuators
 #  for armature (joint_trajectory_contorller) and wheels (cmd_vel) to the scene
-pr2 = NavPR2()
+pr2 = NavPR2(with_keyboard=False)
 pr2.add_interface("ros")
 
 # teleport actuator for the pr2
-teleport_pr2 = Teleport()
-pr2.append(teleport_pr2)
-teleport_pr2.add_interface("ros", topic="pr2_teleport_pose")
+#teleport_pr2 = Teleport()
+#pr2.append(teleport_pr2)
+#teleport_pr2.add_interface("ros", topic="pr2_teleport_pose")
 
 # rear laser for pr2 if asked
 if '--rear_laser' in sys.argv:
@@ -31,14 +31,26 @@ human.properties(WorldCamera = True)
 pose = Pose()
 human.append(pose)
 pose.add_interface("ros", topic="human_pose")
+human_motion = MotionXYW()
+human.append(human_motion)
+human_motion.properties(ControlType='Position')
+human_motion.add_interface("ros", topic="human_cmd_vel")
+human_camera = VideoCamera("FPV")
+human_camera.translate(0.20, 0, 1.63)
+human_camera.rotate(0, -0.17, 0)
+human.append(human_camera)
+human_camera.properties(cam_width=800, cam_height=600)
+
+keyboard = Keyboard()
+human.append(keyboard)
 
 # teleport actuator for the human
-teleport_human = Teleport()
-human.append(teleport_human)
-teleport_human.add_interface("ros", topic="human_teleport_pose")
+#teleport_human = Teleport()
+#human.append(teleport_human)
+#teleport_human.add_interface("ros", topic="human_teleport_pose")
 
 # set the environment to laas_adream
-env = Environment("laas_adream.blend", fastmode=True)
+env = Environment("laas_adream.blend", fastmode=False)
 env.set_camera_location([18.0, 4.0, 10.0])
 env.set_camera_rotation([1.0, 0.0 , 1.57])
 
