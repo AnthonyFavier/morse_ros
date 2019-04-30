@@ -13,4 +13,4 @@ plugins:
  - {name: inflater, type: "costmap_2d::InflationLayer"}
 obstacles:
     observation_sources: /scan
-    /scan: {data_type: LaserScan, sensor_frame: /base_laser_link, expected_update_rate: 0.3, marking: true, clearing: true}
+    /scan: {data_type: LaserScan, sensor_frame: base_laser_link, expected_update_rate: 0.3, marking: true, clearing: true}

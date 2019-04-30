@@ -7,7 +7,7 @@ pr2 = NavPR2()
 pr2.add_interface("ros")
 
 # set the environment to laas_adream
-env = Environment('laas_adream.blend', fastmode=True)
+env = Environment('laas_adream.blend', fastmode=False)
 env.set_camera_location([18.0, 4.0, 10.0])
 env.set_camera_rotation([1.0, 0.0 , 1.57])
 
@@ -17,9 +17,9 @@ clock.add_interface("ros", topic="clock")
 pr2.append(clock)
 
 # create teleport actuator
-teleport = Teleport()
-teleport.add_interface("ros", topic="pr2_teleport_pose")
-pr2.append(teleport)
+#teleport = Teleport()
+#teleport.add_interface("ros", topic="pr2_teleport_pose")
+#pr2.append(teleport)
 
 # rear laser for pr2 if asked
 if '--rear_laser' in sys.argv:
@@ -30,7 +30,7 @@ if '--rear_laser' in sys.argv:
     rear_laser.properties(resolution = 1.0)
     rear_laser.properties(scan_window = 180.0)
     rear_laser.create_laser_arc()
-    rear_laser.add_stream("ros", topic="rear_scan", frame_id="/rear_laser_link")
+    rear_laser.add_stream("ros", topic="rear_scan", frame_id="rear_laser_link")
     pr2.append(rear_laser)
 
 # put the robot in some good place

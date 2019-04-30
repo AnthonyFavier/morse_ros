@@ -20,7 +20,7 @@ if '--rear_laser' in sys.argv:
     rear_laser.properties(resolution = 1.0)
     rear_laser.properties(scan_window = 180.0)
     rear_laser.create_laser_arc()
-    rear_laser.add_stream("ros", topic="rear_scan", frame_id="/rear_laser_link")
+    rear_laser.add_stream("ros", topic="rear_scan", frame_id="rear_laser_link")
     pr2.append(rear_laser)
 
 # adding human model
