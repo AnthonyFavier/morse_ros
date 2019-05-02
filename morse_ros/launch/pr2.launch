@@ -5,7 +5,7 @@
     <arg name="publish_tf" value="false" />
 
     <arg name="rear_laser" default="false" />
-    <node pkg="tf2_ros" type="static_transform_publisher"
+    <node pkg="tf" type="static_transform_publisher"
         name="rear_laser_link_broadcaster"
         args="-0.275 0 0.252 0 0 1 0 base_link rear_laser_link 50"
         if="$(arg rear_laser)" />
