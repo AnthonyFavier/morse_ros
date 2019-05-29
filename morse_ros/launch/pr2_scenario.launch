@@ -3,10 +3,10 @@
     <arg name="scenario" default="laas_adream" />
     <arg name="rear_laser" default="false" />
     <node pkg="morse_ros" type="start_morse.sh"
-        args="$(find morse_ros)/scenarios/pr2_$(arg scenario)_scenario.py"
+        args="$(find morse_ros)/scenarios/pr2_human_$(arg scenario)_scenario.py"
         name="morse" output="screen" required="true" unless="$(arg rear_laser)" />
     <node pkg="morse_ros" type="start_morse.sh"
-        args="$(find morse_ros)/scenarios/pr2_$(arg scenario)_scenario.py --rear_laser"
+        args="$(find morse_ros)/scenarios/pr2_human_$(arg scenario)_scenario.py --rear_laser"
         name="morse" output="screen" required="true" if="$(arg rear_laser)" />
 
     <!-- use simulated clock -->
