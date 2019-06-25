@@ -1,8 +1,9 @@
 import sys
+import rospy
 from morse.builder import *
 from morse.core.services import service
 
-num_humans = 2
+num_humans = 3
 locations = [[3.0, 1.0, 0.0],[7.0, 5.0, 0.0],[7.0, 14.0, 0.0]]
 orientations = [0.0,0.7,1.57]
 
@@ -15,22 +16,19 @@ def add_human(h_id):
     human.properties(WorldCamera = True)
 
     name = "human" + str(h_id)
-    # pose sensor for the human
-    pose = Pose()
-    human.append(pose)
-    pose.add_interface("ros", topic="/humans/" + name + "/pose")
 
-    velocity = Velocity()
-    human.append(velocity)
-    velocity.add_interface("ros", topic="/humans/" + name + "/velocity")
+    # human_marker sensor for the human
+    human_marker = HumanMarker()
 
-    human_motion = MotionVW()
+    human.append(human_marker)
+    human_marker.add_interface("ros", topic="/"+name)
+
+    human_motion = MotionXYW()
     human_motion.properties(ControlType='Position')
+
     human.append(human_motion)
-    human_motion.add_interface("ros", topic="/humans/" + name + "/cmd_vel")
-
+    human_motion.add_interface("ros", topic="/" + name + "/cmd_vel")
     return human
-
 
 
 # pr2 robot with laser (scan) and odometry (odom) sensors, and actuators
@@ -76,10 +74,20 @@ clock.add_interface("ros", topic="clock")
 pr2.translate(2.0, 2.0, 0.0)
 pr2.append(clock)
 
+cameras = []
+
+#Place Humans at different locations and append cameras
 for h_id in range(0,num_humans):
     humans[h_id].translate(locations[h_id][0],locations[h_id][1],locations[h_id][2])
     humans[h_id].rotate(z=orientations[h_id])
     humans[h_id].append(clock)
+    human_camera = VideoCamera("FPV")
+    human_camera.translate(0.10, 0, 1.63)
+    human_camera.rotate(0, -0.17, 0)
+    human_camera.properties(cam_width=1920, cam_height=1080)
+    cameras.append(human_camera)
+    humans[h_id].append(cameras[h_id])
 
+env.select_display_camera(cameras[0])
 env.use_relative_time(True)
 env.create()
