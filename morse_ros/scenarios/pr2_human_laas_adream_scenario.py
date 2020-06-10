@@ -3,7 +3,7 @@ import rospy
 from morse.builder import *
 from morse.core.services import service
 
-num_humans = 3
+num_humans = 1
 locations = [[3.0, 1.0, 0.0],[7.0, 5.0, 0.0],[7.0, 14.0, 0.0]]
 orientations = [0.0,0.7,1.57]
 
@@ -62,7 +62,8 @@ for h_id in range(0,num_humans):
     humans.append(add_human(h_id+1))
 
 # set the environment to laas_adream
-env = Environment("laas_adream.blend", fastmode=False)
+#env = Environment("laas_adream.blend", fastmode=False)
+env = Environment("new_map_modified.blend", fastmode=False)
 env.set_camera_location([18.0, 4.0, 10.0])
 env.set_camera_rotation([1.0, 0.0 , 1.57])
 
