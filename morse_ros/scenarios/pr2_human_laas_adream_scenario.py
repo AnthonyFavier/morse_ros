@@ -2,10 +2,15 @@ import sys
 import rospy
 from morse.builder import *
 from morse.core.services import service
+from hanp_msgs.msg import HumanTwist
 
 num_humans = 1
 locations = [[3.0, 1.0, 0.0],[7.0, 5.0, 0.0],[7.0, 14.0, 0.0]]
 orientations = [0.0,0.7,1.57]
+
+# add clock
+clock = Clock()
+clock.add_interface("ros", topic="clock")
 
 def add_human(h_id):
 
@@ -14,6 +19,7 @@ def add_human(h_id):
     else:
         human = Human(filename="human_rig"+str(h_id))
     human.properties(WorldCamera = True)
+    human.properties(GroundRobot = True)
 
     name = "human" + str(h_id)
 
@@ -28,6 +34,7 @@ def add_human(h_id):
 
     human.append(human_motion)
     human_motion.add_interface("ros", topic="/" + name + "/cmd_vel")
+    human.append(clock)
     return human
 
 
@@ -44,16 +51,26 @@ pr2.append(keyboard)
 #teleport_pr2.add_interface("ros", topic="pr2_teleport_pose")
 
 # rear laser for pr2 if asked
-if '--rear_laser' in sys.argv:
-    rear_laser = Hokuyo()
-    rear_laser.translate(x=-0.275, z=0.252)
-    rear_laser.rotate(z=3.14)
-    rear_laser.properties(laser_range = 30.0)
-    rear_laser.properties(resolution = 1.0)
-    rear_laser.properties(scan_window = 180.0)
-    rear_laser.create_laser_arc()
-    rear_laser.add_stream("ros", topic="rear_scan", frame_id="rear_laser_link")
-    pr2.append(rear_laser)
+# if '--rear_laser' in sys.argv:
+# rear_laser = Hokuyo()
+# rear_laser.translate(x=-0.275, z=0.252)
+# rear_laser.rotate(z=3.14)
+# rear_laser.properties(laser_range = 30.0)
+# rear_laser.properties(resolution = 1.0)
+# rear_laser.properties(scan_window = 180.0)
+# rear_laser.create_laser_arc()
+# rear_laser.add_stream("ros", topic="rear_scan", frame_id="rear_laser_link")
+# pr2.append(rear_laser)
+
+scan = Hokuyo()
+scan.translate(x=0.275, z=0.05)
+scan.add_interface('ros')
+pr2.append(scan)
+scan.properties(Visible_arc = True)
+scan.properties(laser_range = 30.0)
+scan.properties(resolution = 1)
+scan.properties(scan_window = 180.0)
+scan.create_laser_arc()
 
 
 # HumanArray humans
@@ -61,15 +78,13 @@ humans = []
 for h_id in range(0,num_humans):
     humans.append(add_human(h_id+1))
 
+
 # set the environment to laas_adream
-#env = Environment("laas_adream.blend", fastmode=False)
-env = Environment("new_map_modified.blend", fastmode=False)
+env = Environment("laas_adream.blend", fastmode=False)
+#env = Environment("new_map_modified.blend", fastmode=False)
 env.set_camera_location([18.0, 4.0, 10.0])
 env.set_camera_rotation([1.0, 0.0 , 1.57])
 
-# add clock
-clock = Clock()
-clock.add_interface("ros", topic="clock")
 
 # put the robot and humans in some good places and add clock
 pr2.translate(2.0, 2.0, 0.0)
