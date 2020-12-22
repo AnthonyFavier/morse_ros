@@ -24,17 +24,21 @@ def add_human(h_id):
     name = "human" + str(h_id)
 
     # human_marker sensor for the human
-    human_marker = HumanMarker()
-
+    human_marker = Pose()
     human.append(human_marker)
-    human_marker.add_interface("ros", topic="/"+name)
+    human_marker.add_interface("ros", topic="/morse/human_pose")
+
+    human_velocity = Velocity()
+    human.append(human_velocity)
+    human_velocity.add_interface("ros", topic="/morse/human_vel")
 
     human_motion = MotionXYW()
     human_motion.properties(ControlType='Position')
 
     human.append(human_motion)
-    human_motion.add_interface("ros", topic="/" + name + "/cmd_vel")
+    human_motion.add_interface("ros", topic="/human_cmd_vel")
     human.append(clock)
+
     return human
 
 
@@ -44,6 +48,12 @@ pr2 = NavPR2(with_keyboard=False)
 pr2.add_interface("ros")
 keyboard = Keyboard()
 pr2.append(keyboard)
+robot_pose = Pose()
+pr2.append(robot_pose)
+robot_pose.add_interface("ros", topic="/morse/robot_pose")
+robot_velocity = Velocity()
+pr2.append(robot_velocity)
+robot_velocity.add_interface("ros", topic="/morse/robot_vel")
 
 # teleport actuator for the pr2
 #teleport_pr2 = Teleport()
@@ -62,15 +72,15 @@ pr2.append(keyboard)
 # rear_laser.add_stream("ros", topic="rear_scan", frame_id="rear_laser_link")
 # pr2.append(rear_laser)
 
-scan = Hokuyo()
-scan.translate(x=0.275, z=0.05)
-scan.add_interface('ros')
-pr2.append(scan)
-scan.properties(Visible_arc = True)
-scan.properties(laser_range = 30.0)
-scan.properties(resolution = 1)
-scan.properties(scan_window = 180.0)
-scan.create_laser_arc()
+# scan = Hokuyo()
+# scan.translate(x=0.275, z=0.05)
+# scan.add_interface('ros')
+# pr2.append(scan)
+# scan.properties(Visible_arc = True)
+# #scan.properties(laser_range = 30.0)
+# scan.properties(resolution = 1)
+# scan.properties(scan_window = 180.0)
+# scan.create_laser_arc()
 
 
 # HumanArray humans
@@ -90,20 +100,20 @@ env.set_camera_rotation([1.0, 0.0 , 1.57])
 pr2.translate(2.0, 2.0, 0.0)
 pr2.append(clock)
 
-cameras = []
+#cameras = []
 
 #Place Humans at different locations and append cameras
 for h_id in range(0,num_humans):
     humans[h_id].translate(locations[h_id][0],locations[h_id][1],locations[h_id][2])
     humans[h_id].rotate(z=orientations[h_id])
     humans[h_id].append(clock)
-    human_camera = VideoCamera("FPV")
-    human_camera.translate(0.10, 0, 1.63)
-    human_camera.rotate(0, -0.17, 0)
-    human_camera.properties(cam_width=1920, cam_height=1080)
-    cameras.append(human_camera)
-    humans[h_id].append(cameras[h_id])
+#    human_camera = VideoCamera("FPV")
+#    human_camera.translate(0.10, 0, 1.63)
+#    human_camera.rotate(0, -0.17, 0)
+#    human_camera.properties(cam_width=1920, cam_height=1080)
+#    cameras.append(human_camera)
+#    humans[h_id].append(cameras[h_id])
 
-env.select_display_camera(cameras[0])
+#env.select_display_camera(cameras[0])
 env.use_relative_time(True)
 env.create()
