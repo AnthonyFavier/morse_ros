@@ -39,6 +39,9 @@ def add_human(h_id):
     human_motion.add_interface("ros", topic="/human_cmd_vel")
     human.append(clock)
 
+#    keyboard = Keyboard()
+#    human.append(keyboard)
+
     return human
 
 
