@@ -14,7 +14,7 @@ clock.add_interface("ros", topic="clock")
 
 def add_human(h_id):
 
-    if(h_id==1):
+    if(h_id<=2):
         human = Human()
     else:
         human = Human(filename="human_rig"+str(h_id))
@@ -26,21 +26,32 @@ def add_human(h_id):
     # human_marker sensor for the human
     human_marker = Pose()
     human.append(human_marker)
-    human_marker.add_interface("ros", topic="/morse/human_pose")
+    if(h_id==1):
+        human_marker.add_interface("ros", topic="/morse/human_pose")
+    else:
+        human_marker.add_interface("ros", topic="/morse/human2_pose")
 
     human_velocity = Velocity()
     human.append(human_velocity)
-    human_velocity.add_interface("ros", topic="/morse/human_vel")
+    if(h_id==1):
+        human_velocity.add_interface("ros", topic="/morse/human_vel")
+    else:
+        human_velocity.add_interface("ros", topic="/morse/human2_vel")
 
     human_motion = MotionXYW()
     human_motion.properties(ControlType='Position')
 
     human.append(human_motion)
-    human_motion.add_interface("ros", topic="/human_cmd_vel")
+    if(h_id==1):
+        human_motion.add_interface("ros", topic="/human_cmd_vel")
+    else:
+        human_motion.add_interface("ros", topic="/human2_cmd_vel")
+
     human.append(clock)
 
-#    keyboard = Keyboard()
-#    human.append(keyboard)
+    if(h_id==2):
+        keyboard = Keyboard()
+        human.append(keyboard)
 
     return human
 
@@ -49,8 +60,8 @@ def add_human(h_id):
 #  for armature (joint_trajectory_contorller) and wheels (cmd_vel) to the scene
 pr2 = NavPR2(with_keyboard=False)
 pr2.add_interface("ros")
-keyboard = Keyboard()
-pr2.append(keyboard)
+#keyboard = Keyboard()
+#pr2.append(keyboard)
 robot_pose = Pose()
 pr2.append(robot_pose)
 robot_pose.add_interface("ros", topic="/morse/robot_pose")
