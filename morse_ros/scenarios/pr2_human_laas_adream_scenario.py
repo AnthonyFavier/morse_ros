@@ -60,8 +60,8 @@ def add_human(h_id):
 #  for armature (joint_trajectory_contorller) and wheels (cmd_vel) to the scene
 pr2 = NavPR2(with_keyboard=False)
 pr2.add_interface("ros")
-#keyboard = Keyboard()
-#pr2.append(keyboard)
+keyboard = Keyboard()
+pr2.append(keyboard)
 robot_pose = Pose()
 pr2.append(robot_pose)
 robot_pose.add_interface("ros", topic="/morse/robot_pose")
