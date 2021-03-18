@@ -111,6 +111,7 @@ env.set_camera_rotation([1.0, 0.0 , 1.57])
 
 
 # put the robot and humans in some good places and add clock
+#pr2.translate(0.8, 12.0, 0.0)
 pr2.translate(2.0, 2.0, 0.0)
 pr2.append(clock)
 
